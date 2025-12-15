@@ -1,0 +1,354 @@
+/* * 1. 基礎設定與字體
+ * 使用 Chiron GoRound TC 作為主要字體，並啟用平滑滾動。
+ */
+:root {
+    --primary-color: #003366; /* 深藍色 */
+    --secondary-color: #f5e6cc; /* 淺米色/淡金色 */
+    --text-dark: #333;
+    --text-light: #fff;
+    --font-family-base: 'Chiron GoRound TC', sans-serif; /* 修正字體名稱中的加號為空格 */
+}
+
+body {
+    font-family: var(--font-family-base);
+    color: var(--text-dark);
+    padding-top: 54px; /* 預留給手機版頂部導航欄 */
+    scroll-behavior: smooth;
+}
+
+/* * 2. 側邊導航欄 (SideNav) 樣式
+ */
+#sideNav {
+    background-color: var(--primary-color);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 54px;
+    z-index: 1030;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 電腦版 (Lg 以上) 樣式 */
+@media (min-width: 992px) {
+    #sideNav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        flex-direction: column;
+        width: 250px;
+        height: 100vh;
+        text-align: center;
+        padding: 0;
+        box-shadow: none;
+    }
+
+    body {
+        padding-top: 0;
+        padding-left: 250px; /* 騰出左側空間給側邊導航 */
+    }
+
+    #sideNav .navbar-brand {
+        display: flex;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+
+    #sideNav .navbar-brand .profile-logo {
+        background-color: var(--secondary-color);
+        color: var(--primary-color);
+        padding: 10px 15px;
+        font-size: 1rem; /* 調整以容納更長文字 */
+        font-weight: 900;
+        letter-spacing: 1px; /* 調整間距 */
+        border-radius: 8px;
+        box-shadow: 0 4px var(--primary-color);
+        transition: transform 0.2s;
+        line-height: 1.2;
+    }
+
+    #sideNav .navbar-brand .profile-logo:hover {
+        transform: translateY(-2px);
+    }
+
+    #sideNav .navbar-toggler {
+        display: none;
+    }
+    
+    #sideNav .navbar-collapse {
+        display: block !important; /* 確保菜單在電腦版上顯示 */
+        flex-grow: 1; /* 讓菜單佔滿剩餘空間 */
+    }
+}
+
+/* 導航連結 */
+#sideNav .navbar-nav .nav-item .nav-link {
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05rem;
+    color: rgba(255, 255, 255, 0.6);
+    padding: 0.8rem 1.5rem;
+    transition: color 0.2s, background-color 0.2s;
+    font-size: 1.05rem;
+}
+
+#sideNav .navbar-nav .nav-item .nav-link:hover,
+#sideNav .navbar-nav .nav-item .nav-link.active {
+    color: var(--secondary-color);
+    background-color: rgba(255, 255, 255, 0.05);
+    border-left: 5px solid var(--secondary-color);
+}
+
+/* 手機版導航欄品牌/標誌 */
+#sideNav .navbar-brand {
+    font-size: 1.2rem; /* 調整以容納更長文字 */
+    color: var(--text-light);
+    font-weight: 900;
+    text-decoration: none;
+}
+
+/* 手機版漢堡按鈕 */
+#sideNav .navbar-toggler {
+    border: none;
+    color: var(--secondary-color);
+}
+#sideNav .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(245, 230, 204)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* 手機版摺疊菜單 */
+#sideNav .collapse:not(.show) {
+    display: none;
+}
+
+/* * 3. 主要內容區塊 (Sections) 樣式
+ */
+.resume-section {
+    display: flex;
+    align-items: center;
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+    min-height: 100vh; /* 確保內容至少佔滿一個視窗高度 */
+}
+
+.resume-section-content {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.resume-section .subheading {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--secondary-color);
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+/* 標題 H1/H2 */
+h1, h2 {
+    font-weight: 900;
+    color: var(--primary-color);
+}
+
+h1 {
+    font-size: 3.5rem; /* 調整 H1 尺寸以容納雙行文字 */
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+h3 {
+     font-weight: 700;
+     color: var(--primary-color);
+}
+
+h4 {
+     font-weight: 900;
+     color: var(--primary-color);
+     font-size: 1.5rem; /* 調整 H4 尺寸 */
+}
+
+/* 水平分隔線 */
+.m-0 {
+    margin: 0 !important;
+}
+hr {
+    border-top: 1px solid #ddd;
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* * 4. 內容網格與圖片處理 
+ */
+.content-grid {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.content-grid .text-content {
+    flex: 2;
+}
+
+.content-grid .image-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content-grid.reverse {
+    flex-direction: row-reverse;
+}
+
+/* 手機版疊加顯示 */
+@media (max-width: 768px) {
+    .content-grid, .content-grid.reverse {
+        flex-direction: column;
+    }
+    .content-grid .image-content {
+        order: -1; /* 讓圖片在手機上移到上方 */
+        margin-bottom: 1.5rem;
+        width: 100%;
+    }
+}
+
+/* 圖片佔位符樣式 (僅保留預防性樣式) */
+.placeholder-image {
+    min-height: 100px;
+    width: 100%;
+}
+
+/* 實際圖片樣式 */
+.image-content-actual {
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 51, 102, 0.2);
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.image-content-actual:hover {
+     transform: scale(1.02);
+}
+
+/* 實際圖片尺寸約束 */
+.image-content-actual.large {
+    max-width: 450px; /* 主視覺圖較大 */
+    object-fit: contain;
+}
+.image-content-actual.medium {
+    max-width: 350px;
+    object-fit: contain;
+}
+.image-content-actual.small {
+    object-fit: cover;
+}
+
+/* * 5. 產品網格 (Product Grid)
+ */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+/* 調整團刊網格以容納五張圖 */
+#publication .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+/* 調整周邊網格以容納三張圖 */
+#merch .product-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* 團便服圖片網格 */
+#uniform .image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+@media (max-width: 576px) {
+    #uniform .image-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.card h4 {
+    color: var(--primary-color);
+    font-weight: 900;
+    margin-bottom: 1rem;
+}
+
+.card .image-content-actual {
+    margin: 0 auto 1rem;
+    max-height: 300px;
+}
+
+.list-unstyled li {
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+    padding-left: 0.5rem;
+    border-left: 2px solid var(--secondary-color);
+}
+
+/* * 6. 按鈕樣式
+ */
+.button {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: background-color 0.3s, transform 0.2s;
+    margin-top: 1rem;
+    box-shadow: 0 5px 15px rgba(0, 51, 102, 0.3);
+}
+
+.button:hover {
+    background-color: #004488; 
+    transform: translateY(-2px);
+    color: var(--text-light);
+}
+
+/* * 7. 頁腳 (Footer)
+ */
+footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.9rem;
+    color: #6c757d;
+    border-top: 1px solid #f0f0f0;
+}
