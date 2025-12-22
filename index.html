@@ -46,7 +46,8 @@
             min-height: 100vh;
         }
 
-        a { text-decoration: none; color: var(--color-cta); }
+        a { text-decoration: none; color: var(--color-cta); transition: color 0.3s; }
+        a:hover { color: var(--color-primary); }
 
         h1, h2, h3 { font-family: var(--font-heading); margin-bottom: 15px; }
         h1 { font-size: 3em; }
@@ -78,11 +79,13 @@
             transition: background-color 0.3s, transform 0.2s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-transform: uppercase;
+            cursor: pointer;
         }
 
         .cta-button:hover {
             background-color: #E67300;
             transform: translateY(-2px);
+            color: white;
         }
 
         .secondary-cta {
@@ -261,7 +264,7 @@
         .timeline-item:nth-child(even)::after { left: -15px; }
 
         /* ==================================== */
-        /* 團刊與展示網格 */
+        /* 展示網格 (團刊等) */
         /* ==================================== */
         .display-grid {
             display: grid;
@@ -335,25 +338,23 @@
         .specs-table th { background-color: var(--color-primary); color: white; }
 
         /* ==================================== */
-        /* 頁尾 */
+        /* 頁尾 (Footer) */
         /* ==================================== */
-        #main-footer {
+        footer[role="contentinfo"] {
             background-color: #2c3e50;
-            padding: 40px 0;
+            padding: 40px 20px;
             color: #ecf0f1;
             text-align: center;
         }
 
-        .social-links svg {
-            width: 35px;
-            height: 35px;
-            stroke: white;
-            fill: none;
-            margin-top: 15px;
-            transition: stroke 0.3s;
+        footer[role="contentinfo"] a {
+            color: var(--color-secondary);
+            font-weight: bold;
         }
 
-        .social-links a:hover svg { stroke: var(--color-secondary); }
+        footer[role="contentinfo"] a:hover {
+            text-decoration: underline;
+        }
 
         /* ==================================== */
         /* 響應式調整 */
@@ -416,7 +417,7 @@
                 <h1>用歌聲，彩繪我們的青春！</h1>
                 <p>我們是世新合唱團，一個充滿溫馨與「馬兒精神」的大家庭。</p>
                 <div class="cta-group mt-4">
-                    <a href="https://example.com/tickets" target="_blank" class="cta-button">🎵 近期活動/立即購票</a>
+                    <a href="https://www.instagram.com/shuchorus/" target="_blank" class="cta-button">🎵 近期活動/立即購票</a>
                     <a href="#about" class="cta-button secondary-cta">💡 瞭解我們</a>
                 </div>
             </div>
@@ -520,6 +521,7 @@
                     為了讓這份美好的旋律持續傳遞，我們誠摯邀請您參與團慶募資。您的支持將用於演出製作、譜務保存與團員培訓。
                 </p>
                 <div class="mt-4">
+                    <!-- 已移除多餘按鈕，保留一個主要募資連結 -->
                     <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7xP7zRC_OJj7izIvQsz7wxv-fK5sOUMo3QhXXT0PygVkRRA/viewform" target="_blank" class="cta-button funding-cta">💖 支持募資計畫</a>
                 </div>
             </div>
@@ -547,7 +549,8 @@
                     </tbody>
                 </table>
                 <div class="text-center">
-                    <a href="https://example.com/shop" target="_blank" class="cta-button">🛒 立即選購</a>
+                    <!-- 按鈕連結更新至 Instagram -->
+                    <a href="https://www.instagram.com/shuchorus/" target="_blank" class="cta-button">🛒 立即私訊訂購</a>
                 </div>
             </div>
         </section>
@@ -583,22 +586,19 @@
                 </table>
                 
                 <div class="text-center">
-                    <a href="https://example.com/uniform-form" target="_blank" class="cta-button secondary-cta">👕 填寫訂購表單</a>
+                    <!-- 按鈕連結更新至 Instagram -->
+                    <a href="https://www.instagram.com/shuchorus/" target="_blank" class="cta-button secondary-cta">👕 私訊洽詢訂購</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- 頁尾 -->
-    <footer id="main-footer">
-        <div class="container">
-            <p>&copy; 2025 世新合唱團 SHU Chorus. All Rights Reserved.</p>
-            <div class="social-links">
-                <a href="https://www.instagram.com/shuchorus/" target="_blank" aria-label="世新合唱團 Instagram">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-                </a>
-            </div>
-        </div>
+    <!-- 頁尾 (依照指定格式更新) -->
+    <footer role="contentinfo">
+        世新合唱團 | &copy; 2025 All Rights Reserved.
+        <p class="text-center mt-4">
+            網站由 <a href="https://ninininini0624.github.io/" target="_blank" title="點擊前往製作人員的個人網站">武昕妮</a> 製作
+        </p>
     </footer>
 
     <!-- JavaScript 邏輯區塊 -->
@@ -624,14 +624,15 @@
             const carouselImages = document.querySelectorAll('#hero-carousel img');
             let currentIdx = 0;
 
-            function showNextImage() {
-                carouselImages[currentIdx].classList.remove('active');
-                currentIdx = (currentIdx + 1) % carouselImages.length;
-                carouselImages[currentIdx].classList.add('active');
+            if (carouselImages.length > 0) {
+                function showNextImage() {
+                    carouselImages[currentIdx].classList.remove('active');
+                    currentIdx = (currentIdx + 1) % carouselImages.length;
+                    carouselImages[currentIdx].classList.add('active');
+                }
+                // 每 5 秒切換一次
+                setInterval(showNextImage, 5000);
             }
-
-            // 每 5 秒切換一次
-            setInterval(showNextImage, 5000);
         });
     </script>
 </body>
