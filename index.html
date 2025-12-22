@@ -1,312 +1,749 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>世新合唱團 - Official Website</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>世新合唱團 | SHU Chorus - 官方網站</title>
+    <!-- 引入圓體或活潑風格的 Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&family=Kalam:wght@700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome Icons -->
-    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
-    
-    <!-- Custom Google Font (Chiron GoRound TC) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chiron+GoRound+TC:wght@200..900&display=swap" rel="stylesheet">
-    
-    <!-- Bootstrap CSS (Needed for utility classes like mb-5, p-0, collapse etc.) -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    
-    <!-- 外部 CSS 檔案引用 -->
-    <link href="style.css" rel="stylesheet"> 
+    <!-- CSS 樣式區塊 -->
+    <style>
+        /* ==================================== */
+        /* 3. 網站風格 - 關鍵色彩與字體 (藍橘主題) */
+        /* ==================================== */
+        :root {
+            --color-primary: #2894FF;       /* 亮藍色 - 主要強調色 */
+            --color-secondary: #FFB74D;     /* 淺橘色 - 輔助色/溫馨色 */
+            --color-background: #FFFBE6;    /* 極淺米色/奶油色 - 溫馨背景 */
+            --color-text: #333333;
+            --color-cta: #FF8000;           /* 活潑橘色 - 高對比行動呼籲色 */
+            --color-cta-secondary: #2894FF; /* 實心藍色 - 第二行動呼籲色 */
+            --color-alert: #E74C3C;         /* 警示紅 - 訂購截止日 */
+            --color-dark: #666666;
+            
+            /* 字體：Kalam 模擬手寫風格用於標題，Noto Sans TC 用於內文 */
+            --font-heading: 'Kalam', cursive;
+            --font-body: 'Noto Sans TC', sans-serif;
+        }
 
+        /* ==================================== */
+        /* 基本樣式重置與結構 */
+        /* ==================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--color-text);
+            background-color: var(--color-background);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: var(--color-cta); }
+
+        h1, h2, h3 { font-family: var(--font-heading); margin-bottom: 15px; }
+        h1 { font-size: 3em; }
+        h2 { font-size: 2.5em; text-align: center; margin-bottom: 40px; color: var(--color-cta); } /* 標題使用新橘色 */
+        h3 { font-size: 1.8em; color: var(--color-dark); }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-padding { padding: 80px 0; }
+        .section-light-bg { background-color: white; }
+        .text-center { text-align: center; }
+        .mt-4 { margin-top: 2rem; }
+
+        /* ==================================== */
+        /* 活潑可愛的按鈕樣式 (CTA) */
+        /* ==================================== */
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--color-cta); /* 新橘色 */
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            border-radius: 50px; 
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background-color: #E67300; /* 深一點的新橘色 */
+            transform: translateY(-2px);
+        }
+
+        .secondary-cta {
+            background-color: var(--color-cta-secondary); /* 新藍色 */
+        }
+
+        .secondary-cta:hover {
+            background-color: #1F7FD8; /* 深一點的新藍色 */
+        }
+
+        .funding-cta {
+            background-color: var(--color-primary); /* 亮藍色 */
+            color: var(--color-text);
+            font-size: 1.2em;
+        }
+
+        .funding-cta:hover {
+            background-color: #1F7FD8; /* 深一點的新藍色 */
+        }
+
+        .small-button { padding: 8px 15px; font-size: 0.9em; }
+
+        /* ==================================== */
+        /* 導航列 (Navigation) */
+        /* ==================================== */
+        #main-header {
+            background-color: var(--color-primary); /* 亮藍色 */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        #main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--color-text);
+            font-family: var(--font-heading);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li a {
+            color: var(--color-dark);
+            padding: 10px 15px;
+            display: block;
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--color-cta); /* 新橘色 */
+        }
+
+        .hamburger-menu {
+            display: none;
+            font-size: 1.8em;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--color-text);
+        }
+
+        /* ==================================== */
+        /* 4.1 主題區 (Hero Banner) */
+        /* ==================================== */
+        .hero-banner {
+            position: relative;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-color: var(--color-secondary); /* 淺橘色 */
+        }
+
+        .carousel {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .carousel img.active {
+            opacity: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.2);
+            padding: 20px 40px;
+            border-radius: 15px;
+        }
+
+        .hero-content h1 {
+            color: white;
+            font-size: 4em;
+            margin-bottom: 0.5em;
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            margin-bottom: 2em;
+        }
+
+        .cta-group a {
+            margin: 0 10px;
+        }
+
+        /* ==================================== */
+        /* 4.2 關於我們 (About) */
+        /* ==================================== */
+        .about-image {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            display: block;
+            margin: 20px auto 40px auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* ==================================== */
+        /* 4.2 關於我們 (Timeline) */
+        /* ==================================== */
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--color-secondary); /* 淺橘色 */
+            margin-left: -1px;
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 10px 40px;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        .timeline-item::after {
+            content: '🎵'; /* 音符圖標 */
+            position: absolute;
+            width: 24px;
+            height: 24px;
+            background: var(--color-primary); /* 亮藍色 */
+            border: 2px solid white;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8em;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+
+        /* ==================================== */
+        /* 4.4 團刊 (Magazine Grid) */
+        /* ==================================== */
+        .magazine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .magazine-card {
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+
+        .magazine-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .magazine-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            object-fit: cover;
+            aspect-ratio: 3/4;
+        }
+
+        /* ==================================== */
+        /* 4.5 募資區 (Funding CTA) */
+        /* ==================================== */
+        .section-cta-bg {
+            background-color: var(--color-secondary); /* 淺橘色 */
+            color: white;
+        }
+
+        .section-cta-bg h2 {
+            color: white;
+        }
+
+        .funding-slogan {
+            font-size: 1.5em;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-family: var(--font-heading);
+        }
+
+
+        /* ==================================== */
+        /* 4.7 團便服 (Uniform) */
+        /* ==================================== */
+        .alert-block {
+            background-color: var(--color-alert); /* 警示紅 */
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .uniform-gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .uniform-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid var(--color-secondary); /* 淺橘色邊框 */
+        }
+
+        .specs-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .specs-table th, .specs-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .specs-table th {
+            background-color: var(--color-primary); /* 亮藍色表頭 */
+            color: var(--color-text);
+        }
+
+        /* ==================================== */
+        /* 頁尾 (Footer) */
+        /* ==================================== */
+        #main-footer {
+            background-color: var(--color-primary); /* 亮藍色 */
+            padding: 30px 0;
+            color: var(--color-dark);
+            font-size: 0.9em;
+        }
+
+        .social-links {
+            margin-top: 10px;
+        }
+
+        .social-links svg {
+            width: 30px;
+            height: 30px;
+            stroke: var(--color-dark);
+            fill: none;
+            transition: stroke 0.3s;
+        }
+        
+        .social-links a:hover svg {
+            stroke: var(--color-cta);
+        }
+
+        /* ==================================== */
+        /* 響應式設計 (Media Queries) */
+        /* ==================================== */
+        @media (max-width: 900px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-primary);
+                box-shadow: 0 4px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hamburger-menu {
+                display: block;
+            }
+
+            .hero-content h1 { font-size: 2.5em; }
+            .hero-content p { font-size: 1em; }
+            .cta-group { display: flex; flex-direction: column; gap: 10px; }
+            .cta-group a { margin: 0; }
+
+            /* Timeline 響應式調整為單欄 */
+            .timeline::before { left: 15px; }
+            .timeline-item { width: 100%; padding-left: 60px; padding-right: 10px; left: 0 !important; text-align: left !important; }
+            .timeline-item:after { left: 5px !important; }
+
+            /* 網格響應式調整 */
+            .magazine-grid { grid-template-columns: repeat(2, 1fr); }
+            .uniform-gallery { grid-template-columns: repeat(2, 1fr); }
+
+            h2 { font-size: 2em; }
+        }
+
+        @media (max-width: 500px) {
+            .magazine-grid { grid-template-columns: 1fr; }
+            .uniform-gallery { grid-template-columns: 1fr; }
+            .hero-content { padding: 10px 20px; }
+        }
+    </style>
 </head>
-<body id="page-top">
-    
-    <!-- 導航欄 (SideNav) -->
-    <nav id="sideNav">
-        <!-- 電腦版 Logo -->
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-            <span class="d-none d-lg-block">
-                <!-- 頁首文字 1: 世新合唱團 SHIH HSIN UNIVERSITY CHORUS -->
-                <div class="profile-logo">SHIH HSIN UNIVERSITY CHORUS</div>
-            </span>
-        </a>
-        <!-- 手機版 Logo (在電腦版上隱藏) -->
-        <a class="navbar-brand d-lg-none js-scroll-trigger" href="#page-top">世新合唱團 SHU CHORUS</a>
-        
-        <!-- 手機版漢堡按鈕 -->
-        <button class="navbar-toggler" type="button" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!-- 導航連結清單 (新增募資計畫) -->
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link js-scroll-trigger active" href="#home">🎶 主題</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">👥 關於我們</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#events">📅 系列活動</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#publication">📖 團刊</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#fundraising">💰 募資計畫</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#merch">🛍️ 周邊</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#uniform">👕 團便服</a></li>
+<body>
+
+    <!-- 導航列 (Navigation) -->
+    <header id="main-header">
+        <nav class="container">
+            <a href="#home" class="logo">世新合唱團 (SHU Chorus)</a>
+            <button class="hamburger-menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="#home">首頁</a></li>
+                <li><a href="#about">關於我們</a></li>
+                <li><a href="#events">系列活動</a></li>
+                <li><a href="#magazine">樂聲之家</a></li>
+                <li><a href="#funding">募資計畫</a></li>
+                <li><a href="#merch">周邊</a></li>
+                <li><a href="#uniform">團便服</a></li>
             </ul>
-        </div>
-    </nav>
-    
-    <!-- 主要內容區塊 -->
-    <div class="container-fluid p-0">
-        
-        <!-- #home: 主題 -->
-        <section class="resume-section" id="home">
-            <div class="resume-section-content">
-                <h1 class="mb-0">世新合唱團 <br class="d-block d-md-none"/>SHIH HSIN UNIVERSITY CHORUS</h1>
-                <div class="subheading mb-5">
-                    用聲音寫下我們的故事
-                </div>
-                <div class="content-grid">
-                    <div class="text-content">
-                        <p class="lead mb-5">世新合唱團始於民國 54 年，致力於推廣合唱藝術。我們相信，音樂的力量能夠跨越語言的界限，感動每一個聽眾。</p>
-                        <p class="lead mb-5">無論您是經驗豐富的聲樂愛好者，還是初次接觸合唱的新手，都歡迎加入我們，一同探索聲音的無限可能。</p>
-                        <a href="#about" class="button">深入了解我們</a>
-                    </div>
-                    <!-- 圖片 1.jpg (頁首) -->
-                    <div class="image-content">
-                        <img src="img/1.jpg" onerror="this.onerror=null; this.src='https://placehold.co/450x300/003366/f5e6cc?text=主視覺圖片';" alt="世新合唱團年度公演主視覺" class="image-content-actual large" style="max-width: 100%; max-height: 400px; object-fit: contain;">
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <hr class="m-0" />
+        </nav>
+    </header>
 
-        <!-- #about: 關於我們 (圖片 2.jpg) -->
-        <section class="resume-section" id="about">
-            <div class="resume-section-content">
-                <h2 class="mb-5">👥 關於我們</h2>
-                
-                <!-- 宗旨與歷史 -->
-                <div class="content-grid reverse mb-5 pb-3 border-bottom">
-                    <div class="text-content">
-                        <h3>宗旨與歷史</h3>
-                        <p>世新大學合唱團（Shih Hsin University Chorus，SHUC），簡稱世新合唱團，是世新大學學生社團之一，創立於<strong>民國 54 年 3 月 22 日</strong>。</p>
-                        <p><strong>宗旨：</strong> 以提高學生素質、倡導音樂風氣、陶冶身心、提升氣質及聯絡團員感情。</p>
-                        <p><strong>信條：：</strong> 「責任、榮譽、服從」、「犧牲最大犧牲，享受最低享受」。</p>
-                        
-                        <h4 class="mt-4">團史與活動</h4>
-                        <p style="font-size: 0.95rem;">本團由首任團長兼指揮—謝建治所創辦，最初稱為「音樂協會」，後來正式改名為「世新合唱團」，並於民國 83 年（1994 年）登記為業餘演藝團體。</p>
-                        <p style="font-size: 0.95rem;">合唱團每年的活動種類繁多，例如幹部訓練成長營、招生試音、期末公演、年度公演等。每學期末在校內舉辦期末音樂會，且於每個年度 7 月前後舉辦年度售票音樂會。</p>
-                        
-                        <h4 class="mt-4">團員文化：馬兒精神</h4>
-                        <p style="font-size: 0.95rem;">團員習慣以「馬兒」相稱，並以資歷深淺分為「老馬」與「小馬」。此稱謂來自李抱忱的話語：「我就像隻老馬，帶著你們這群小馬奔馳在音樂的大草原上。」意指團內每一員在音樂和生活上努力做好自己，亦盡力照顧每一位新團員。</p>
-                    </div>
-                    <!-- 圖片 2.jpg (關於我們) -->
-                    <div class="image-content">
-                        <img src="img/2.jpg" onerror="this.onerror=null; this.src='https://placehold.co/350x300/003366/f5e6cc?text=團員合照';" alt="世新合唱團團員合照" class="image-content-actual medium" style="max-width: 100%; max-height: 300px; object-fit: contain;">
-                    </div>
-                </div>
-                
-                <h3 class="mb-4">指揮老師與獲獎紀錄</h3>
-                
-                <div class="content-grid">
-                    <!-- 指揮老師與特色 -->
-                    <div class="text-content" style="flex: 1.5;">
-                        <h4>現任指揮老師</h4>
-                        <p>國立臺灣師範大學音樂學博士，美國克里夫蘭州立大學 (CLEVELAND STATE UNIVERSITY) 音樂碩士。現為輔仁大學、東華大學音樂系兼任助理教授，教授音樂學、西洋音樂史相關課程。</p>
-                        <p>除教職外，更身兼多個廣播節目主持人，並受邀擔任客席指揮及音樂比賽評審。</p>
-                        
-                        <h4 class="mt-4">演出特色</h4>
-                        <ul class="list-unstyled">
-                            <li><strong>狂想阿卡貝拉 (怪怪 PART)：</strong> 2000 年 7 月首次嘗試。利用音效、燈光、道具或舞蹈演譯歌曲背景與風味，偏重音樂，所有配合元素偏重創意。</li>
-                            <li><strong>斑馬線：</strong> 由子團「斑馬線人聲樂團 (Popphone Singers）」負責，以無伴奏合唱、重唱形式呈現。</li>
-                        </ul>
-                    </div>
-
-                    <!-- 獲獎記錄 -->
-                    <div class="text-content" style="flex: 1;">
-                         <h4>國際獲獎榮耀</h4>
-                         <ul class="list-unstyled">
-                            <li><strong class="text-danger">2017年 / 峇里島：</strong>代表台灣參加《第六屆峇里島國際合唱大賽》，榮獲初賽與冠軍賽<span class="text-dark">冠軍</span>！</li>
-                            <li><strong class="text-primary">2014年 / 泰國：：</strong>《第七屆泰國芭提雅國際合唱節比賽》爵士組<span class="text-dark">金牌</span>、混聲組<span class="text-dark">銀牌</span>。</li>
-                            <li><strong class="text-primary">2008年 / 希臘：：</strong>《第26屆國際合唱音樂比賽》青年組<span class="text-dark">銀牌獎</span>、最佳民謠歌曲。</li>
-                            <li><strong class="text-primary">2005年 / 匈牙利：：</strong>《國際合唱大賽》<span class="text-dark">最佳舞臺呈現大獎</span>。</li>
-                            <li><strong class="text-primary">2002年 / 捷克：：</strong>《第十七屆IFAS國際大學合唱團音樂節大賽》混聲組<span class="text-dark">銀牌水準獎</span>、民謠組 <span class="text-dark">銀牌水準獎</span>、特別獎（混聲組指定曲最佳詮釋獎和觀眾票選最受歡迎團隊 第二名）。</li>
-                            <li><strong class="text-primary">1998年 / 英國：：</strong>《北威爾斯國際合唱大賽》青少年組<span class="text-dark">第四名</span>、民謠組<span class="text-dark">第十名</span>。</li>
-                        </ul>
-                    </div>
-                </div>
+    <main>
+        <!-- 4.1 主題區 (Home/Banner) -->
+        <section id="home" class="hero-banner">
+            <!-- 輪播圖片區塊 -->
+            <div class="carousel">
+                <!-- 圖片 1.jpg: 放在主題區 (第一張) -->
+                <img src="images/1.jpg" alt="世新合唱團團體活動照 (1)" class="active">
+                <!-- 佔位符圖片，保持輪播功能 -->
+                <img src="https://placehold.co/1200x600/2894FF/FFFFFF?text=Carousel+Photo+2" alt="世新合唱團活動照 2">
+                <img src="https://placehold.co/1200x600/FF8000/FFFFFF?text=Carousel+Photo+3" alt="世新合唱團活動照 3">
             </div>
-        </section>
-        
-        <hr class="m-0" />
-        
-        <!-- #events: 系列活動 -->
-        <section class="resume-section" id="events">
-            <div class="resume-section-content">
-                <h2 class="mb-5">📅 系列活動</h2>
-                <p class="lead">世新合唱團，一個溫暖如家的所在。我們有許多大大小小的活動，如招生試音、野餐音樂會、重唱大賽、期末公演、寒訓、再招生、團慶、送舊校內公演以及年度公演等等。</p>
-                <p class="lead mb-4">五十九屆的世新合唱團度過了許多難忘的時光。如果您還想看更多的資訊，請點擊下方按鈕，我們將向您介紹五十九屆的各式點點滴滴。</p>
-                <a href="https://niphotooo.my.canva.site/dagrdpum4rk" target="_blank" rel="noopener noreferrer" class="button">回顧五九</a>
-            </div>
-        </section>
-        
-        <hr class="m-0" />
-
-        <!-- #publication: 團刊 (圖片 3-7) -->
-        <section class="resume-section" id="publication">
-            <div class="resume-section-content">
-                <h2 class="mb-5">📖 團刊《樂聲之家》</h2>
-                <p class="lead">世新合唱團的團刊稱為<strong>「樂聲之家」</strong>，迄今已發行超過八百期！</p>
-                <p class="lead">刊物內容豐富，紀錄了歷屆幹部、新進團員的介紹，以及各個活動的文字與影像內容，詳實地記錄了世新合唱團的點點滴滴。</p>
-                <p class="lead mb-4">點擊下方卡片即可前往 PUBU 電子書平台收看該期團刊！</p>
-                <!-- 5 張團刊封面圖 -->
-                <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
-                     <!-- 圖片 3.jpg -->
-                     <div class="product-item card">
-                        <h4>2024 夏季號 (No. 860)</h4>
-                        <img src="img/3.jpg" onerror="this.onerror=null; this.src='https://placehold.co/180x250/003366/f5e6cc?text=團刊 3'; alt="樂聲之家 2024 夏季號封面" class="image-content-actual small" style="min-height: 250px; object-fit: contain;">
-                        <p>主題：藍天與綠草</p>
-                        <a href="https://www.pubu.com.tw/ebook/485026" target="_blank" rel="noopener noreferrer" class="button" style="font-size: 0.9rem; padding: 5px 15px;">前往 PUBU 閱讀</a>
-                    </div>
-                     <!-- 圖片 4.jpg -->
-                     <div class="product-item card">
-                        <h4>2024 冬季號 (No. 861)</h4>
-                        <img src="img/4.jpg" onerror="this.onerror=null; this.src='https://placehold.co/180x250/003366/f5e6cc?text=團刊 4';" alt="樂聲之家 2024 冬季號封面" class="image-content-actual small" style="min-height: 250px; object-fit: contain;">
-                        <p>主題：追尋的列車</p>
-                        <a href="https://www.pubu.com.tw/ebook/485026" target="_blank" rel="noopener noreferrer" class="button" style="font-size: 0.9rem; padding: 5px 15px;">前往 PUBU 閱讀</a>
-                    </div>
-                     <!-- 圖片 5.png -->
-                     <div class="product-item card">
-                        <h4>2025 春季號 (No. 862)</h4>
-                        <img src="img/5.jpg" onerror="this.onerror=null; this.src='https://placehold.co/180x250/003366/f5e6cc?text=團刊 5';" alt="樂聲之家 2025 春季號封面" class="image-content-actual small" style="min-height: 250px; object-fit: contain;">
-                        <p>主題：聲音的旅行</p>
-                        <a href="https://www.pubu.com.tw/ebook/500718" target="_blank" rel="noopener noreferrer" class="button" style="font-size: 0.9rem; padding: 5px 15px;">前往 PUBU 閱讀</a>
-                    </div>
-                     <!-- 圖片 6.jpg -->
-                     <div class="product-item card">
-                        <h4>2024 春季號 (No. 863)</h4>
-                        <img src="img/6.jpg" onerror="this.onerror=null; this.src='https://placehold.co/180x250/003366/f5e6cc?text=團刊 6';" alt="樂聲之家 2024 春季號封面" class="image-content-actual small" style="min-height: 250px; object-fit: contain;">
-                        <p>主題：星光下的精靈</p>
-                        <a href="https://www.pubu.com.tw/ebook/573417" target="_blank" rel="noopener noreferrer" class="button" style="font-size: 0.9rem; padding: 5px 15px;">前往 PUBU 閱讀</a>
-                    </div>
-                     <!-- 圖片 7.jpg -->
-                     <div class="product-item card">
-                        <h4>2025 夏季號 (No. 864)</h4>
-                        <img src="img/7.jpg" onerror="this.onerror=null; this.src='https://placehold.co/180x250/003366/f5e6cc?text=團刊 7';" alt="樂聲之家 2025 夏季號封面" class="image-content-actual small" style="min-height: 250px; object-fit: contain;">
-                        <p>主題：森林中的鋼琴</p>
-                        <a href="https://www.pubu.com.tw/ebook/609783" target="_blank" rel="noopener noreferrer" class="button" style="font-size: 0.9rem; padding: 5px 15px;">前往 PUBU 閱讀</a>
-                    </div>
+            <div class="hero-content container">
+                <h1>用歌聲，彩繪我們的青春！</h1>
+                <p>我們是世新合唱團，一個充滿溫馨與「馬兒精神」的大家庭。</p>
+                <div class="cta-group">
+                    <!-- CTA 1: 近期活動/購票 (外部連結) -->
+                    <a href="連結至購票系統URL" target="_blank" class="cta-button primary-cta">🎵 近期活動/立即購票</a>
+                    <!-- CTA 2: 加入我們/招募資訊 (內部錨點連結) -->
+                    <a href="#about" class="cta-button secondary-cta">💡 加入我們/瞭解招募</a>
                 </div>
-            </div>
-        </section>
-        
-        <!-- #fundraising: 募資計畫 -->
-        <hr class="m-0" />
-        <section class="resume-section" id="fundraising">
-            <div class="resume-section-content">
-                <h2 class="mb-5">💰 六十週年募資計畫</h2>
-                <p class="lead">世新大學合唱團已經走過整整六十年，這是一段充滿汗水、淚水和無數動人樂章的歲月。今年，我們希望藉著擴大舉辦團慶，將這份歷史與榮耀分享給每一位曾經參與、支持我們的朋友。</p>
-                <p class="lead">無論您是離開母校已久的團友，還是與我們一起走過這段旅程的親朋好友，您的支持不僅僅是財務上的幫助，更是一份情感的連結。</p>
-                <p class="lead">每一份心意，都是我們勇敢向前的力量，讓我們能夠繼續歌頌青春與夢想，並將這份熱情傳遞給下一代。您的捐助，將會成為我們團體成長、發行紀念品及傳承音樂精神的重要支柱。</p>
-                <p class="lead mb-4">如果您有意願參與募資計畫，請點擊下方表單。匯款資訊及聯絡人相關資訊皆在表單說明欄，感謝您的支持！</p>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7xP7zRC_OJj7izIvQsz7wxv-fK5sOUMo3QhXXT0PygVkRRA/viewform" target="_blank" rel="noopener noreferrer" class="button">前往募資表單 (Google Form)</a>
             </div>
         </section>
 
-        <hr class="m-0" />
-        <!-- #merch: 周邊 (圖片 8-10) -->
-        <section class="resume-section" id="merch">
-            <div class="resume-section-content">
-                <h2 class="mb-5">🛍️ 周邊</h2>
-                <p class="lead">支持合唱團，購買我們的周邊商品！每一筆收入都將用於支持我們的音樂活動。以下是第六十週年團慶周邊價目表：</p>
-                <div class="product-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-                     
-                     <!-- 圖片 8.jpg (服飾配件組) -->
-                     <div class="product-item card text-center">
-                        <h4>團慶周邊 01 (服飾配件組)</h4>
-                        <img src="img/8.jpg" onerror="this.onerror=null; this.src='https://placehold.co/350x350/003366/f5e6cc?text=周邊 8';" alt="第六十週年團慶周邊價目表 01" class="image-content-actual small" style="min-height: 350px; object-fit: contain; margin: 0 auto;">
-                        <p class="mt-3">包含帽踢、帆布袋、杯墊等。</p>
-                        <a href="#" class="button" style="font-size: 0.9rem; padding: 5px 15px;">查看詳情/訂購</a>
-                    </div>
-                     
-                     <!-- 圖片 9.jpg (紀念小物組) -->
-                     <div class="product-item card text-center">
-                        <h4>團慶周邊 02 (紀念小物組)</h4>
-                        <img src="img/9.jpg" onerror="this.onerror=null; this.src='https://placehold.co/350x350/003366/f5e6cc?text=周邊 9';" alt="第六十週年團慶周邊價目表 02" class="image-content-actual small" style="min-height: 350px; object-fit: contain; margin: 0 auto;">
-                        <p class="mt-3">包含明信片、鑰匙圈，多種聲部款式。</p>
-                         <a href="#" class="button" style="font-size: 0.9rem; padding: 5px 15px;">查看詳情/訂購</a>
-                    </div>
+        <!-- 4.2 關於我們 (About Us) -->
+        <section id="about" class="section-padding section-light-bg">
+            <div class="container">
+                <h2>💖 關於我們 - 馬兒精神永流傳</h2>
+                <div class="content-block">
+                    <!-- 圖片 2.jpg: 放在關於我們 (第二張) -->
+                    <img src="images/2.jpg" alt="世新合唱團團體照" class="about-image">
                     
-                     <!-- 圖片 10.jpg (T恤與襪子) -->
-                     <div class="product-item card text-center">
-                        <h4>團慶周邊 03 (T恤與襪子)</h4>
-                        <img src="img/10.jpg" onerror="this.onerror=null; this.src='https://placehold.co/350x350/003366/f5e6cc?text=周邊 10';" alt="第六十週年團慶周邊價目表 03" class="image-content-actual small" style="min-height: 350px; object-fit: contain; margin: 0 auto;">
-                        <p class="mt-3">團便服 T 恤及專屬襪子設計。</p>
-                         <a href="#" class="button" style="font-size: 0.9rem; padding: 5px 15px;">查看詳情/訂購</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <hr class="m-0" />
-        <!-- #uniform: 團便服 (圖片 11-16) -->
-        <section class="resume-section" id="uniform">
-            <div class="resume-section-content">
-                <h2 class="mb-5">👕 團便服</h2>
-                <p class="lead">本年度團便服款式及訂購資訊。請注意截止日期！</p>
-                <div class="content-grid" style="align-items: flex-start;">
-                    
-                    <div class="text-content" style="flex: 1;">
-                        <h3>2024年設計與資訊</h3>
-                        
-                        <h4>設計理念</h4>
-                        <p style="font-size: 0.95rem;">正面的小馬以「獨角獸」為出發點作為設計主體，象徵著純真、正直以及獨特，這是對合唱團的想法與期許；背面則是選用 SHU choir 的字樣並搭配躍動感強的花邊，凸顯世新合唱團朝氣蓬勃的一面。</p>
-                        
-                        <h4 class="mt-4">訂購資訊</h4>
-                        <p><strong>售價：</strong> 250元/件</p>
-                        <p><strong>顏色：</strong> 午夜藍 / <strong>材質：</strong> 100% 精梳棉</p>
-                        <!-- 尺寸更新為 160/S/M/L/XL/XXL -->
-                        <p><strong>尺寸指南：</strong> 160 / S / M / L / XL / XXL (請參考下方尺寸表圖示)</p>
-                        <p>訂購截止日：2025/12/31</p>
-                        
-                        <a href="#" class="button">前往訂購表單</a>
-                    </div>
-
-                    <!-- 圖片網格 (設計介紹 11-14 + 試穿 15-16) -->
-                    <div class="image-content" style="flex: 1.5; margin-top: 0;">
-                        <h4 class="w-100 text-center mb-4">設計圖與試穿照</h4>
-                        <div class="image-grid w-100">
-                             <!-- 圖片 11.png (獨角獸 Logo) -->
-                             <img src="img/11.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x400/003366/f5e6cc?text=設計圖 11';" alt="團便服獨角獸 Logo" class="image-content-actual small">
-                             <!-- 圖片 12.png (SHU Choir 文字設計) -->
-                             <img src="img/12.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x400/003366/f5e6cc?text=設計圖 12';" alt="團便服 SHU Choir 文字設計" class="image-content-actual small">
-                             <!-- 圖片 13.png (T恤位置示意圖) -->
-                             <img src="img/13.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x400/003366/f5e6cc?text=設計圖 13';" alt="團便服 T恤位置示意圖" class="image-content-actual small">
-                             <!-- 圖片 14.jpg (藍色與橘色設計理念圖) -->
-                             <img src="img/14.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x400/003366/f5e6cc?text=設計圖 14';" alt="團便服藍色與橘色設計理念圖" class="image-content-actual small">
-                             <!-- 圖片 15.jpg (男生試穿背面) -->
-                             <img src="img/15.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x400/6c757d/ffffff?text=試穿照片 15';" alt="團便服男生試穿背面" class="image-content-actual small">
-                             <!-- 圖片 16.jpg (女生試穿正面) -->
-                             <img src="img/16.jpg" onerror="this.onerror=null; this.src='https://placehold.co/300x400/6c757d/ffffff?text=試穿照片 16';" alt="團便服女生試穿正面" class="image-content-actual small">
+                    <p>世新合唱團成立於 19xx 年，秉持「團結、和諧、熱情」的宗旨，用最純粹的歌聲感染每一位聽眾。我們不僅是一個合唱團，更是團友們的精神交流中心，充滿了歡笑與音樂的溫馨大家庭。</p>
+                    <h3 class="mt-4">團史沿革 (Timeline)</h3>
+                    <div class="timeline">
+                        <!-- CMS: Timeline 項目應可動態增減 -->
+                        <div class="timeline-item">
+                            <h4>19xx 年：合唱團成立</h4>
+                            <p>在學校禮堂舉辦了首場公開演出，奠定合唱團的基礎。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>20xx 年：首次年度公演</h4>
+                            <p>首次走出校園，在專業場館舉辦年度公演，大獲成功。</p>
+                        </div>
+                        <div class="timeline-item">
+                            <h4>20xx 年：獲全國合唱比賽優等</h4>
+                            <p>合唱團達到一個重要的里程碑，獲得全國比賽優等獎。</p>
+                        </div>
+                         <div class="timeline-item">
+                            <h4>至今：馬兒文化</h4>
+                            <p>傳承世新獨特的「馬兒文化」，強調團隊合作與熱情。</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        
-<footer role="contentinfo">
-        世新合唱團 | &copy; 2025 All Rights Reserved.
-        <p class="text-center mt-4">
-        網站由 <a href="https://ninininini0624.github.io/" target="_blank" title="點擊前往製作人員的個人網站">武昕妮</a> 製作
-        </p>
-</footer>
-        
-    </div> <!-- 閉合 container-fluid -->
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    
-    <!-- 外部 JavaScript 檔案引用 -->
-    <script src="script.js"></script> 
+        <!-- 4.3 系列活動 (Events) -->
+        <section id="events" class="section-padding">
+            <div class="container">
+                <h2>🎉 系列活動</h2>
+                <p class="text-center">從招生試音、小型音樂會到盛大的年度公演，我們的歌聲從不缺席。</p>
+
+                <h3 class="mt-4 text-center">近期活動預告</h3>
+                <!-- CMS: 列表展示最近 1-3 個即將發生的活動，需可動態更新 -->
+                <div class="event-list text-center">
+                    <div class="event-card">
+                        <h4>2026 年度公演：(活動名稱待定)</h4>
+                        <p>日期：2026/05/xx | 地點：國家音樂廳</p>
+                    </div>
+                    <!-- 更多活動卡片... -->
+                </div>
+
+                <div class="mt-4 text-center">
+                    <!-- 59屆活動回顧連結 (外部連結) -->
+                    <a href="https://niphotooo.my.canva.site/dagrdpum4rk" target="_blank" class="cta-button secondary-cta">✨ 五十九屆的精彩瞬間回顧</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.4 團刊 (Alumni Magazine) -->
+        <section id="magazine" class="section-padding section-light-bg">
+            <div class="container">
+                <h2>📖 樂聲之家 - 團刊</h2>
+                <p class="text-center">《樂聲之家》是我們記錄合唱團點滴、團友心聲的溫馨刊物，每一期都承載著珍貴的回憶。</p>
+                <div class="magazine-grid">
+                    <!-- 圖片 3.jpg 到 7.jpg: 放在團刊 -->
+                    <div class="magazine-card">
+                        <img src="images/3.jpg" alt="樂聲之家 864 期封面">
+                        <p>第 864 期</p>
+                        <a href="https://www.pubu.com.tw/ebook/609783" target="_blank" class="cta-button small-button">前往 PUBU 閱讀</a>
+                    </div>
+                    <div class="magazine-card">
+                        <img src="images/4.jpg" alt="樂聲之家 863 期封面">
+                        <p>第 863 期</p>
+                        <a href="https://www.pubu.com.tw/ebook/573417" target="_blank" class="cta-button small-button">前往 PUBU 閱讀</a>
+                    </div>
+                    <div class="magazine-card">
+                        <img src="images/5.jpg" alt="樂聲之家 862 期封面">
+                        <p>第 862 期</p>
+                        <a href="https://www.pubu.com.tw/ebook/500718" target="_blank" class="cta-button small-button">前往 PUBU 閱讀</a>
+                    </div>
+                    <div class="magazine-card">
+                        <img src="images/6.jpg" alt="樂聲之家 861 期封面">
+                        <p>第 861 期</p>
+                        <a href="https://www.pubu.com.tw/ebook/485026" target="_blank" class="cta-button small-button">前往 PUBU 閱讀</a>
+                    </div>
+                    <div class="magazine-card">
+                        <img src="images/7.jpg" alt="樂聲之家 860 期封面">
+                        <p>第 860 期</p>
+                        <a href="https://www.pubu.com.tw/ebook/476313" target="_blank" class="cta-button small-button">前往 PUBU 閱讀</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.5 募資計畫 (Funding Project) -->
+        <section id="funding" class="section-padding section-cta-bg">
+            <div class="container text-center">
+                <h2>🌟 六十週年團慶募資計畫</h2>
+                <p class="funding-slogan">「合唱的薪火，需要你我的傳承！」</p>
+                <p>六十年歲月，感謝所有團友的支持。您的每一份心意，都將用於我們的年度公演製作、音樂交流與團員訓練，讓世新合唱團的歌聲永不間斷，延續這份美好的馬兒精神。</p>
+                <!-- 募資計畫表單連結 (外部連結) -->
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7xP7zRC_OJj7izIvQsz7wxv-fK5sOUMo3QhXXT0PygVkRRA/viewform" target="_blank" class="cta-button funding-cta">💖 立即參與募資，成為傳承者</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe7xP7zRC_OJj7izIvQsz7wxv-fK5sOUMo3QhXXT0PygVkRRA/viewform" target="_blank" class="cta-button funding-cta">💖 立即參與募資，成為傳承者</a>
+            </div>
+        </section>
+
+        <!-- 4.6 周邊 (Merchandise) -->
+        <section id="merch" class="section-padding">
+            <div class="container">
+                <h2>🛍️ 團慶周邊商品</h2>
+                <p class="text-center">將合唱團的溫暖回憶穿戴在身！這裡有為六十週年特別設計的限量紀念周邊。</p>
+
+                <div class="uniform-gallery">
+                    <!-- 圖片 8.jpg 到 10.jpg: 放在周邊 -->
+                    <img src="images/8.jpg" alt="紀念馬克杯">
+                    <img src="images/9.jpg" alt="帆布袋">
+                    <img src="images/10.jpg" alt="紀念徽章">
+                </div>
+
+                <h3 class="text-center mt-4">團慶周邊價目表</h3>
+                <table class="specs-table">
+                    <thead>
+                        <tr><th>品項</th><th>價格 (NTD)</th><th>備註</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>紀念馬克杯 (限量)</td><td>$450</td><td>附專屬禮盒包裝</td></tr>
+                        <tr><td>馬兒圖案帆布袋</td><td>$350</td><td>耐用厚磅帆布</td></tr>
+                        <tr><td>六十週年紀念徽章</td><td>$150</td><td>金色烤漆質感</td></tr>
+                    </tbody>
+                </table>
+
+                <div class="mt-4 text-center">
+                    <!-- 周邊訂購連結 (外部連結) -->
+                    <a href="連結至實際的電商平台或訂購表單" target="_blank" class="cta-button">🛒 前往周邊商品訂購</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.7 團便服 (Uniform/Apparel) -->
+        <section id="uniform" class="section-padding section-light-bg">
+            <div class="container">
+                <h2>👕 2026 年度團便服</h2>
+                <!-- 訂購截止日警示色塊 -->
+                <div class="alert-block">
+                    🔔 **最後訂購期限！** 截止日：<time datetime="2025-12-31">2025/12/31</time>
+                </div>
+
+                <h3>設計理念與款式</h3>
+                <p class="text-center">本年度設計以「音符的律動」為靈感，採用舒適透氣的材質，兼具質感與團體識別性。</p>
+
+                <!-- 圖片 11.jpg 到 16.jpg: 放在團便服 -->
+                <div class="uniform-gallery">
+                    <img src="images/11.jpg" alt="團便服設計圖 (前)" class="design-shot">
+                    <img src="images/12.jpg" alt="團便服設計圖 (後)" class="design-shot">
+                    <img src="images/13.jpg" alt="團便服模特兒實穿圖 (男)" class="model-shot">
+                    <img src="images/14.jpg" alt="團便服模特兒實穿圖 (女)" class="model-shot">
+                    <img src="images/15.jpg" alt="團便服顏色選項" class="design-shot">
+                    <img src="images/16.jpg" alt="團便服細節特寫" class="design-shot">
+                </div>
+
+                <h3 class="mt-4">售價、材質與尺寸指南</h3>
+                <table class="specs-table">
+                    <thead>
+                        <tr><th>品項</th><th>材質/規格</th><th>售價 (NTD)</th><th>備註</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>年度 T-Shirt</td><td>100% 精梳棉，20 支紗</td><td>$650</td><td>S - 2XL 尺寸齊全</td></tr>
+                    </tbody>
+                </table>
+                <p>詳細尺寸表請參考訂購表單連結中的附件。</p>
+
+                <div class="mt-4 text-center">
+                    <!-- 團便服訂購連結 (外部連結) -->
+                    <a href="連結至團便服訂購表單" target="_blank" class="cta-button secondary-cta">👕 前往團便服訂購表單</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- 頁尾 (Footer) -->
+    <footer id="main-footer">
+        <div class="container text-center">
+            <p>&copy; 2025 世新合唱團 SHU Chorus. All Rights Reserved.</p>
+            <div class="social-links">
+                <!-- 簡單的 Instagram SVG 圖標 -->
+                <a href="https://www.instagram.com/shuchorus/" target="_blank" aria-label="世新合唱團 Instagram">
+                    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================================== -->
+    <!-- JavaScript 腳本區塊 -->
+    <!-- ==================================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // 1. 響應式導航 (Hamburger Menu) 邏輯
+            const hamburger = document.querySelector('.hamburger-menu');
+            const navLinks = document.querySelector('.nav-links');
+            const links = document.querySelectorAll('.nav-links a');
+
+            // 點擊漢堡選單按鈕
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+
+            // 點擊導航連結後收起選單 (適用於單頁滾動，確保在手機上選單會關閉)
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
+                });
+            });
+
+
+            // 2. 圖片輪播 (Hero Banner Carousel) 邏輯
+            const carouselImages = document.querySelectorAll('.carousel img');
+            if (carouselImages.length > 0) {
+                let currentImageIndex = 0;
+                const intervalTime = 5000; // 5 秒切換一次
+
+                // 設置初始圖片
+                carouselImages[currentImageIndex].classList.add('active');
+
+                function nextImage() {
+                    // 移除當前 active class
+                    carouselImages[currentImageIndex].classList.remove('active');
+
+                    // 計算下一張圖片的索引 (使用模數運算實現循環)
+                    currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+
+                    // 新圖片 active class
+                    carouselImages[currentImageIndex].classList.add('active');
+                }
+
+                // 設定計時器，自動播放
+                setInterval(nextImage, intervalTime);
+            }
+        });
+    </script>
 </body>
 </html>
